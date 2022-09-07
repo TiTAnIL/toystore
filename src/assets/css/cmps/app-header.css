@@ -1,0 +1,7 @@
+.app-header {
+    background-color: var(--clr3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

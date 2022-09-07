@@ -1,41 +1,21 @@
 
-// import { React } from 'react'
+import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { toyReducer } from './reducers/toy.reducer.js'
+// import { userReducer } from './reducers/user.reducer'
 
-const initialState = {
-    ideas: null,
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-function myReducer(state = initialState, action) {
-    var ideas;
-    switch (action.type) {
-        case 'ADD_IDEA':
-            ideas = [...state.ideas, action.idea]
-            return { ...state, ideas }
-        case 'REMOVE_IDEA':
-            ideas = state.ideas.filter(idea => idea._id !== action.ideaId)
-            return { ...state, ideas }
-        case 'SET_IDEAS':
-            return { ...state, ideas: action.ideas }
-        case 'UPDATE_IDEA':
-            ideas = state.ideas.map(currIdea => (currIdea._id === action.idea._id) ? action.idea : currIdea)
-            return {...state, ideas}
-        case 'MARK':
-            ideas = state.ideas.map(currIdea => (currIdea._id === action.idea._id) ? action.idea : currIdea)
-            return {...state, ideas}
-        default:
-            return state
-    }
-}
-
-const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    
-export const store = createStore(myReducer,
-    composeEnhancers(applyMiddleware(thunk)))
-
-// For debug only!
-store.subscribe(() => {
-    console.log('Store state is:', store.getState())
+const rootReducer = combineReducers({
+    toyModule: toyReducer,
+    // userModule: userReducer
 })
+
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
+window.gStore = store
+
+
+// // For debug only!
+// store.subscribe(() => {
+//     console.log('Store state is:', store.getState())
+// })

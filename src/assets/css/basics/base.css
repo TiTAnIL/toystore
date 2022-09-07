@@ -1,0 +1,22 @@
+
+:root {    
+    --clr1: #80ffdb;
+    --clr2: #55e0a3;
+    --clr3: #5b70f3;
+    --clr4: #4850b9;
+}
+
+
+html {
+    font-family: OpenSans, sans-serif;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--clr1);
+}

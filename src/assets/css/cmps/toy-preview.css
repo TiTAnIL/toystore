@@ -1,0 +1,18 @@
+
+.buy-btn:hover {
+    background-color: lawngreen;
+}
+
+.del-btn {
+    font-size: 1rem;
+    background-color: rgb(164, 33, 33);
+    box-shadow: rgb(94, 85, 85) 0 -6px 8px inset;
+
+
+}
+
+.del-btn:hover {
+    background-color: red;
+    box-shadow: rgb(217, 42, 42) 0 -6px 8px inset;
+    transform: scale(1.125);
+}

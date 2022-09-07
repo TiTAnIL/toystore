@@ -1,30 +1,39 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 // import { Link } from 'react-router-dom'
 import { React } from 'react'
+import { useSelector } from 'react-redux'
+import { loadToys, removeToy } from '../store/actions/toy.action'
+import LoadingScreen from "react-loading-screen"
+import { ToyList } from '../cmps/toy-list'
 
 
-const _ToyApp = (props) => {
+export const ToyApp = (props) => {
 
+    const {toys} = useSelector(state => state.toyModule)
+    const dispatch = useDispatch()
+  
     useEffect(() => {
-        console.log('toy app is up')
+        dispatch(loadToys())
     }, [])
 
+    const onRemoveToy = (toyId) => {
+        dispatch(removeToy(toyId))
+    }
+
+    if (!toys) return <LoadingScreen
+        loading={true}
+        bgColor="rgba(255,255,255,0.5)"
+        spinnerColor="#4850b9"
+        textColor="#676767"
+        logoSrc=""
+        text="Plenty of our toys will be ready in a moment!"
+    >
+        {" "}
+    </LoadingScreen>
     return (
         <div className='toy-app'>
-            Hello from toy app!
+            <ToyList toys={toys} onRemoveToy={onRemoveToy}></ToyList>
         </div>
     )
 }
-
-
-const mapStateToProps = state => {
-
-    // return {
-    // }
-}
-
-const mapDispatchToProps = {
-}
-
-export const ToyApp = connect(mapStateToProps, mapDispatchToProps)(_ToyApp)
